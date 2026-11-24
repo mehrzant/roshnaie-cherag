@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>رُژنائیں چِراگ | دیوان و کتابخانه دیجیتال</title>
+    <style>
+        :root {
+            --bg-color: #0f1115;
+            --card-bg: #181b22;
+            --soft-bg: #12151b;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --accent: #d4af37;
+            --border: #2a2f3a;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            line-height: 1.8;
+            padding: 20px 16px 40px;
+        }
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+        }
+        header {
+            text-align: center;
+            padding: 28px 0 24px;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 22px;
+        }
+        .brand-row {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+        .brand-logo {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1.5px solid rgba(212, 175, 55, 0.55);
+            flex-shrink: 0;
+            background-color: #000000;
+        }
+        header h1 {
+            font-size: 1.9rem;
+            color: var(--accent);
+            letter-spacing: 0.5px;
+        }
+        header p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        .filter-btn {
+            background-color: var(--card-bg);
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .filter-btn.active {
+            color: #0f1115;
+            background-color: var(--accent);
+            border-color: var(--accent);
+            font-weight: 600;
+        }
+        .turn-btn {
+            background-color: transparent;
+            color: var(--accent);
+            border: 1px solid rgba(212, 175, 55, 0.55);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .turn-btn:hover {
+            background-color: rgba(212, 175, 55, 0.12);
+        }
+        .poem-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 22px;
+            margin-bottom: 20px;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .poem-card.highlighted {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 1px rgba(212, 175, 55, 0.35);
+        }
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            color: var(--accent);
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .copy-btn {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+            padding: 4px 10px;
+            border-radius: 8px;
+            font-size: 0.78rem;
+            cursor: pointer;
+            font-family: inherit;
+        }
+        .copy-btn:hover {
+            color: var(--accent);
+            border-color: rgba(212, 175, 55, 0.45);
+        }
+        .top-media {
+            margin-bottom: 18px;
+        }
+        .poem-image {
+            width: 100%;
+            max-height: 380px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            border: 1px solid var(--border);
+        }
+        .photo-bio-box {
+            margin-top: 10px;
+            background-color: var(--soft-bg);
+            border: 1px solid var(--border);
+            border-right: 2.5px solid var(--accent);
+            border-radius: 10px;
+            padding: 12px 14px;
+        }
+        .photo-bio-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .photo-bio-label {
+            font-size: 0.76rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+        .photo-bio-text {
+            font-size: 0.9rem;
+            color: #e5e7eb;
+            white-space: pre-line;
+        }
+        .balochi-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 14px;
+            white-space: pre-line;
+        }
+        .persian-text {
+            font-size: 0.98rem;
+            color: #d1d5db;
+            border-right: 2px solid var(--accent);
+            padding-right: 12px;
+            margin-bottom: 12px;
+            white-space: pre-line;
+        }
+        .english-text {
+            direction: ltr;
+            text-align: left;
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-style: normal;
+            white-space: pre-line;
+        }
+        .audio-box {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid var(--border);
+            background-color: var(--soft-bg);
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+        .audio-title {
+            font-size: 0.82rem;
+            color: var(--accent);
+            margin-bottom: 6px;
+        }
+        .audio-box audio {
+            width: 100%;
+            height: 34px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand-row">
+                <img src="logo.png" alt="لوگوی رُژنائیں چِراگ" class="brand-logo">
+                <h1>رُژنائیں چِراگ</h1>
+            </div>
+            <p>دیوان دیجیتال شعر، ادب و ترجمه‌های ماندگار</p>
+        </header>
+
+        <div class="toolbar">
+            <div class="filters" id="filters"></div>
+            <button class="turn-btn" type="button" onclick="nextPageCard()">ورقِ بعدی</button>
+        </div>
+        <main id="poems-list"></main>
+
+        <footer>
+            رُژنائیں چِراگ
+        </footer>
+    </div>
+
+    <script>
+        let allPoems = [];
+        let activeTag = "همه";
+        let seenIds = [];
+
+        function escapeHtml(str) {
+            return String(str || "")
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;");
+        }
+
+        function writeClipboard(text, btn) {
+            navigator.clipboard.writeText(text).then(() => {
+                const oldText = btn.textContent;
+                btn.textContent = "کپی شد ✓";
+                setTimeout(() => { btn.textContent = oldText; }, 1500);
+            }).catch(() => {});
+        }
+
+        function getVisiblePoems() {
+            return activeTag === "همه"
+                ? allPoems
+                : allPoems.filter(p => p.tag === activeTag);
+        }
+
+        function renderFilters() {
+            const filtersEl = document.getElementById("filters");
+            const tags = ["همه", ...new Set(allPoems.map(p => p.tag).filter(Boolean))];
+            filtersEl.innerHTML = tags.map(tag => `
+                <button class="filter-btn ${tag === activeTag ? "active" : ""}" onclick="selectTag('${escapeHtml(tag)}')">
+                    ${escapeHtml(tag)}
+                </button>
+            `).join("");
+        }
+
+        function selectTag(tag) {
+            activeTag = tag;
+            renderFilters();
+            renderPoems();
+        }
+
+        function nextPageCard() {
+            const pool = getVisiblePoems();
+            if (!pool.length) return;
+
+            let unseen = pool.filter(p => !seenIds.includes(p.id));
+            if (!unseen.length) {
+                seenIds = [];
+                unseen = pool;
+            }
+
+            const picked = unseen[Math.floor(Math.random() * unseen.length)];
+            seenIds.push(picked.id);
+
+            document.querySelectorAll(".poem-card.highlighted").forEach(el => {
+                el.classList.remove("highlighted");
+            });
+
+            const cardEl = document.getElementById(`poem-${picked.id}`);
+            if (cardEl) {
+                cardEl.classList.add("highlighted");
+                cardEl.scrollIntoView({ behavior: "smooth", block: "center" });
+            }
+        }
+
+        function copyPoem(id, btn) {
+            const poem = allPoems.find(p => p.id === id);
+            if (!poem) return;
+            const parts = [poem.balochi, poem.persian, poem.english].filter(Boolean);
+            if (poem.photo_bio) {
+                parts.push(`بیو عکس:\n${poem.photo_bio}`);
+            }
+            parts.push("رُژنائیں چِراگ");
+            writeClipboard(parts.join("\n\n"), btn);
+        }
+
+        function copyPhotoBio(id, btn) {
+            const poem = allPoems.find(p => p.id === id);
+            if (!poem || !poem.photo_bio) return;
+            const text = `${poem.photo_bio}\n\nرُژنائیں چِراگ`;
+            writeClipboard(text, btn);
+        }
+
+        function renderTopMedia(poem) {
+            const hasImage = Boolean(poem.image && poem.image.trim());
+            const hasBio = Boolean(poem.photo_bio && poem.photo_bio.trim());
+            if (!hasImage && !hasBio) return "";
+
+            let html = '<div class="top-media">';
+            if (hasImage) {
+                html += `<img src="${escapeHtml(poem.image)}" alt="تصویر پست رُژنائیں چِراگ" class="poem-image">`;
+            }
+            if (hasBio) {
+                html += `
+                    <div class="photo-bio-box">
+                        <div class="photo-bio-head">
+                            <span class="photo-bio-label">بیو عکس</span>
+                            <button class="copy-btn" onclick="copyPhotoBio(${poem.id}, this)">کپی بیو</button>
+                        </div>
+                        <div class="photo-bio-text">${escapeHtml(poem.photo_bio)}</div>
+                    </div>
+                `;
+            }
+            html += "</div>";
+            return html;
+        }
+
+        function renderAudio(poem) {
+            const hasAudio = Boolean(poem.audio && poem.audio.trim());
+            if (!hasAudio) return "";
+            return `
+                <div class="audio-box">
+                    <div class="audio-title">${escapeHtml(poem.audio_title || "موسیقی همراه")}</div>
+                    <audio controls preload="none" src="${escapeHtml(poem.audio)}"></audio>
+                </div>
+            `;
+        }
+
+        function renderPoems() {
+            const listEl = document.getElementById("poems-list");
+            const filtered = getVisiblePoems();
+
+            listEl.innerHTML = filtered.map(poem => `
+                <article class="poem-card" id="poem-${poem.id}">
+                    <div class="card-top">
+                        <span class="tag">${escapeHtml(poem.tag || "شعر و ترجمه")}</span>
+                        <button class="copy-btn" onclick="copyPoem(${poem.id}, this)">کپی متن</button>
+                    </div>
+                    ${renderTopMedia(poem)}
+                    <div class="balochi-text">${escapeHtml(poem.balochi)}</div>
+                    <div class="persian-text">${escapeHtml(poem.persian)}</div>
+                    <div class="english-text">${escapeHtml(poem.english)}</div>
+                    ${renderAudio(poem)}
+                </article>
+            `).join("");
+        }
+
+        fetch("poems.json?v=" + Date.now())
+            .then(res => res.json())
+            .then(data => {
+                allPoems = Array.isArray(data) ? data : [];
+                renderFilters();
+                renderPoems();
+            })
+            .catch(() => {
+                document.getElementById("poems-list").innerHTML =
+                    '<article class="poem-card"><div class="persian-text">خطا در بارگذاری poems.json</div></article>';
+            });
+    </script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+[
+  {
+    "id": 1,
+    "tag": "شعر و ترجمه",
+    "balochi": "چراگے روژنا بیت تهاریں شپانی تها\nدل ءِ گپّاں گوں مهر ءَ نبشتہ کن ایں",
+    "persian": "چراغی روشن می‌شود در دلِ شب‌های تاریک\nسخن‌های دل را با مهر می‌نویسیم",
+    "english": "A lamp shines bright within the darkest nights,\nWith love, we write the whispers of the heart.",
+    "image": "",
+    "photo_bio": "",
+    "audio": "",
+    "audio_title": ""
+  },
+  {
+    "id": 2,
+    "tag": "زھیریگ",
+    "balochi": "من لوٹاں سال ءِ ھر دوئیں موسُماں، زھیریگ بہ باں۔\nیک موسُمے گوں ترا۔۔۔\nیک موسُمے بے ترا۔۔۔۔۔۔!",
+    "persian": "می‌خواهم در هر دو فصل سال، دلتنگ باشم.\nیک فصل با تو!\nیک فصل بدون تو!",
+    "english": "I want to long for you in both seasons of the year.\nOne season with you!\nOne season without you!",
+    "image": "media/img_2_AQAD1xFrGyDxMVB8.jpg",
+    "photo_bio": "",
+    "audio": "",
+    "audio_title": ""
+  },
+  {
+    "id": 3,
+    "tag": "شعر و ترجمه",
+    "balochi": "",
+    "persian": "",
+    "english": "",
+    "image": "",
+    "photo_bio": "",
+    "audio": "media/aud_3_AgADpB0AAnNQUFE.mp3",
+    "audio_title": "من نزاناں کہ شموشگ تئی پرچا گران اِنت"
+  }
+]
